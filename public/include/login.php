@@ -15,7 +15,7 @@
               <div class="row">
                 <div class="col-md-3">Username</div>
                 <div class="col-md-9">
-                  <input type="text" name="username" placeholder="Username" class="form-control">
+                  <input type="text" name="username" placeholder="Username" value="<?php if(isset($_SESSION['username_login'])){ echo $_SESSION['username_login']; $_SESSION['username_login'] = null; } ?>" class="form-control">
                 </div>
               </div><br>
 

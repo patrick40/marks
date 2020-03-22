@@ -159,12 +159,12 @@
                             <li class="dropdown">
                                 <i class="ti-user" data-toggle="dropdown"></i>
                                 <div class="dropdown-menu notify-box" style="height: auto">
-                                    <span class="notify-title"><i class="ti-user"></i> Mutabazi Patrick</span>
+                                    <span class="notify-title"><i class="ti-user"></i> <?php echo $userDetails[0]->last_name." ".$userDetails[0]->first_name; ?></span>
                                     <div class="nofity-list">
-                                        <a href="#" class="notify-item">
+                                        <a href="<?php base(); ?>profile" class="notify-item">
                                             <i class="ti-home"></i> My profile
                                         </a>
-                                        <a href="#" class="notify-item">
+                                        <a href="<?php base(); ?>change_password" class="notify-item">
                                             <i class="ti-user"></i> Change Password
                                         </a>
                                         <a href="functions/logout.php" class="notify-item">

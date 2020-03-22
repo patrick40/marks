@@ -11,6 +11,7 @@ if(isset($_POST['login'])){
         $_SESSION['err'] = "Please enter username";
     }
     elseif(empty($password)){
+        $_SESSION['username_login'] = $username;
         $_SESSION['err'] = "Please enter password";
     }
     else{
@@ -23,12 +24,18 @@ if(isset($_POST['login'])){
                     ':password' => $password
                 ));
                 if($student_row = $check_student->fetch(PDO::FETCH_OBJ)){
-                    $_SESSION['user_id'] = $student_row->student_id;
-                    $_SESSION['usertype'] = 1; //Student -> 1
-                    $_SESSION['msg'] = "Hey ".$student_row->last_name.", you are logged successfully, You are a student";
-                    header("Location: ../admin/");
+                    if($student_row->status == 1) {
+                        $_SESSION['user_id'] = $student_row->student_id; //It will be used to check if user has logged in
+                        $_SESSION['usertype'] = 1; //Student -> 1
+                        $_SESSION['msg'] = "Hey ".$student_row->last_name.", you are logged successfully, You are a student";
+                        header("Location: ../admin/");
+                    }
+                    else{
+                        $_SESSION['err'] = "You are no longer a user of this system";
+                    }
                 }
                 else{
+                    $_SESSION['username_login'] = $username;
                     $_SESSION['err'] = "Incorrect password";
                 }
             break;
@@ -39,12 +46,18 @@ if(isset($_POST['login'])){
                     ':password' => $password
                 ));
                 if($lecturer_row = $check_lecturer->fetch(PDO::FETCH_OBJ)){
-                    $_SESSION['user_id'] = $lecturer_row->lecturer_id;
-                    $_SESSION['usertype'] = 2; //Lecturer -> 2
-                    $_SESSION['msg'] = "Hey ".$lecturer_row->last_name.", you are logged successfully, You are a lecturer";
-                    header("Location: ../admin/");
+                    if($lecturer_row->status == 1){
+                        $_SESSION['user_id'] = $lecturer_row->lecturer_id;
+                        $_SESSION['usertype'] = 2; //Lecturer -> 2
+                        $_SESSION['msg'] = "Hey ".$lecturer_row->last_name.", you are logged successfully, You are a lecturer";
+                        header("Location: ../admin/");
+                    }
+                    else{
+                        $_SESSION['err'] = "You are no longer a user of this system";
+                    }
                 }
                 else{
+                    $_SESSION['username_login'] = $username;
                     $_SESSION['err'] = "Incorrect password";
                 }
             break;
@@ -55,12 +68,18 @@ if(isset($_POST['login'])){
                     ':password' => $password
                 ));
                 if($hod_row = $check_hod->fetch(PDO::FETCH_OBJ)){
-                    $_SESSION['user_id'] = $hod_row->hod_id;
-                    $_SESSION['usertype'] = 3; //HOD -> 3
-                    $_SESSION['msg'] = "Hey ".$hod_row->last_name.", you are logged successfully, You are a HOD";
-                    header("Location: ../admin/");
+                    if($hod_row->status == 1){
+                        $_SESSION['user_id'] = $hod_row->hod_id;
+                        $_SESSION['usertype'] = 3; //HOD -> 3
+                        $_SESSION['msg'] = "Hey ".$hod_row->last_name.", you are logged successfully, You are a HOD";
+                        header("Location: ../admin/");
+                    }
+                    else{
+                        $_SESSION['err'] = "You are no longer a user of this system";
+                    }
                 }
                 else{
+                    $_SESSION['username_login'] = $username;
                     $_SESSION['err'] = "Incorrect password";
                 }
             break; 
