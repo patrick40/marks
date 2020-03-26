@@ -67,6 +67,52 @@ if(!isset($_SESSION['user_id'])){
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>
     <script src="../styles/assets/js/plugins.js"></script>
     <script src="../styles/assets/js/scripts.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.DataTable').DataTable();
+        });
+    </script>
+    <!-- Scripts -->
+    <script>
+        $(document).ready(function(){
+            $('body').delegate('.course_id', 'click', function(){
+                var course_id = $(this).attr("course_id");
+                $.ajax({
+                    url: "functions/courses.php",
+                    method: "POST",
+                    data: {delete_course:course_id},
+                    success: function(data){
+                        $('#course_content').html(data);
+                    }
+                })
+            })
+
+            //Code to retrieve form for edit (course)
+            $('body').delegate('.course_edit', 'click', function(){
+                var course_id = $(this).attr("course_id");
+                $.ajax({
+                    url: "functions/courses.php",
+                    method: "POST",
+                    data: {edit_course:course_id},
+                    success: function(data){
+                        $('#edit_course_content').html(data);
+                    }
+                })
+            })
+
+            $('body').delegate('.user_delete_id', 'click', function(){
+                var user_id = $(this).attr("user_id");
+                $.ajax({
+                    url: "functions/users.php",
+                    method: "POST",
+                    data: {delete_user_id:user_id},
+                    success: function(data){
+                        $('#delete_user_content').html(data);
+                    }
+                })
+            })
+        });
+    </script>
 </body>
 
 </html>
