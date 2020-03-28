@@ -43,6 +43,7 @@ switch(userType($username)){
                             }
                         }
                     }
+                    
                 }
             }
             break;
