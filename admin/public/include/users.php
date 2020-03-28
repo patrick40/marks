@@ -122,13 +122,13 @@
                                                             <div class="card">
                                                                 <div class="card-body">
                                                                     <h4 class="header-title">Student List</h4>
-                                                                    <div class="data-tables">
+                                                                    <div class="data-tables table-responsive">
                                                                     <?php
                                                                     if(!isset($_SESSION['user_check_type'])){
                                                                         message();
                                                                     }
                                                                     ?>
-                                                                        <table id="dataTable" class="DataTable text-center">
+                                                                        <table id="dataTable0" class="DataTable text-center">
                                                                             <thead class="bg-light text-capitalize">
                                                                                 <tr>
                                                                                     <th>No</th>
@@ -174,7 +174,7 @@
                                                                                         
                                                                                         <td>
                                                                                             <button class='btn btn-primary btn-xs'><i class='fa fa-edit'></i></button>
-                                                                                            <button user_id='$student_id' class='btn btn-danger btn-xs user_delete_id' data-toggle='modal' data-target='#delete_user_modal'><i class='fa fa-trash'></i></button>
+                                                                                            <button user_id='$student_id' utype='1' class='btn btn-danger btn-xs user_delete_id' data-toggle='modal' data-target='#delete_user_modal'><i class='fa fa-trash'></i></button>
                                                                                         </td>
                                                                                     </tr>
                                                                                     ";
@@ -312,7 +312,7 @@
                                                                                 </thead>
                                                                                 <tbody>
                                                                                     <?php
-                                                                                    $lecturers = $conn->prepare("SELECT * FROM lecturer ORDER BY lecturer_id DESC");
+                                                                                    $lecturers = $conn->prepare("SELECT * FROM lecturer WHERE status = '1' ORDER BY lecturer_id DESC");
                                                                                     $lecturers->execute();
                                                                                     $i = 1;
                                                                                     while($lecturer_rows = $lecturers->fetch(PDO::FETCH_ASSOC)){
@@ -338,7 +338,7 @@
                                                                                             
                                                                                             <td>
                                                                                                 <button class='btn btn-primary btn-xs'><i class='fa fa-edit'></i></button>
-                                                                                                <button user_id='$lecturer_id' class='btn btn-danger btn-xs' user_delete_id' data-toggle='modal' data-target='#delete_user_modal'><i class='fa fa-trash'></i></button>
+                                                                                                <button user_id='$lecturer_id' utype='2' class='btn btn-danger btn-xs user_delete_id' data-toggle='modal' data-target='#delete_user_modal'><i class='fa fa-trash'></i></button>
                                                                                             </td>
                                                                                         </tr>
                                                                                         ";
@@ -460,7 +460,7 @@
                                                                                 </thead>
                                                                                 <tbody>
                                                                                     <?php
-                                                                                    $hod = $conn->prepare("SELECT * FROM hod ORDER BY hod_id DESC");
+                                                                                    $hod = $conn->prepare("SELECT * FROM hod WHERE status = '1' ORDER BY hod_id DESC");
                                                                                     $hod->execute();
                                                                                     $i = 1;
                                                                                     while($hod_rows = $hod->fetch(PDO::FETCH_ASSOC)){
@@ -479,7 +479,7 @@
                                                                                             
                                                                                             <td>
                                                                                                 <button class='btn btn-primary btn-xs'><i class='fa fa-edit'></i></button>
-                                                                                                <button user_id='$hod_id' class='btn btn-danger btn-xs'  user_delete_id' data-toggle='modal' data-target='#delete_user_modal'><i class='fa fa-trash'></i></button>
+                                                                                                <button user_id='$hod_id' utype='3' class='btn btn-danger btn-xs user_delete_id' data-toggle='modal' data-target='#delete_user_modal'><i class='fa fa-trash'></i></button>
                                                                                             </td>
                                                                                         </tr>
                                                                                         ";

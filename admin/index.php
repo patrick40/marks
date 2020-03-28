@@ -103,10 +103,11 @@ if(!isset($_SESSION['user_id'])){
             //codes to retreive data to delete from users
             $('body').delegate('.user_delete_id', 'click', function(){
                 var user_id = $(this).attr("user_id");
+                var utype = $(this).attr("utype");
                 $.ajax({
                     url: "functions/users.php",
                     method: "POST",
-                    data: {delete_user_id:user_id},
+                    data: {delete_user_id:user_id,utype:utype},
                     success: function(data){
                         $('#delete_user_content').html(data);
                     }
