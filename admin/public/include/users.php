@@ -316,6 +316,7 @@
                                                                                     $lecturers->execute();
                                                                                     $i = 1;
                                                                                     while($lecturer_rows = $lecturers->fetch(PDO::FETCH_ASSOC)){
+                                                                                        $lecturer_id=$lecturer_rows['lecturer_id'];
                                                                                         $lecturer_first_name = $lecturer_rows['first_name'];
                                                                                         $lecturer_last_name= $lecturer_rows['last_name'];
                                                                                         if($lecturer_rows['gender'] == "m"){
@@ -337,7 +338,7 @@
                                                                                             
                                                                                             <td>
                                                                                                 <button class='btn btn-primary btn-xs'><i class='fa fa-edit'></i></button>
-                                                                                                <button class='btn btn-danger btn-xs'><i class='fa fa-trash'></i></button>
+                                                                                                <button user_id='$lecturer_id' class='btn btn-danger btn-xs' user_delete_id' data-toggle='modal' data-target='#delete_user_modal'><i class='fa fa-trash'></i></button>
                                                                                             </td>
                                                                                         </tr>
                                                                                         ";
@@ -463,6 +464,7 @@
                                                                                     $hod->execute();
                                                                                     $i = 1;
                                                                                     while($hod_rows = $hod->fetch(PDO::FETCH_ASSOC)){
+                                                                                        $hod_id = $hod_rows['hod_id'];
                                                                                         $hod_first_name = $hod_rows['first_name'];
                                                                                         $hod_last_name= $hod_rows['last_name'];
                                                                                         $hod_email = $hod_rows['email'];
@@ -477,7 +479,7 @@
                                                                                             
                                                                                             <td>
                                                                                                 <button class='btn btn-primary btn-xs'><i class='fa fa-edit'></i></button>
-                                                                                                <button class='btn btn-danger btn-xs'><i class='fa fa-trash'></i></button>
+                                                                                                <button user_id='$hod_id' class='btn btn-danger btn-xs'  user_delete_id' data-toggle='modal' data-target='#delete_user_modal'><i class='fa fa-trash'></i></button>
                                                                                             </td>
                                                                                         </tr>
                                                                                         ";
@@ -513,7 +515,7 @@
                         <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
                     </div>
                     <div class="modal-body">
-                        <div id="delete_user_content"><!--Course to be deleted here--></div>
+                        <div id="delete_user_content"><!--user to be deleted here--></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-ban"></i> Cancel</button>

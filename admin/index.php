@@ -74,6 +74,7 @@ if(!isset($_SESSION['user_id'])){
     </script>
     <!-- Scripts -->
     <script>
+    //codes to retrieve data to delete from courses
         $(document).ready(function(){
             $('body').delegate('.course_id', 'click', function(){
                 var course_id = $(this).attr("course_id");
@@ -99,7 +100,7 @@ if(!isset($_SESSION['user_id'])){
                     }
                 })
             })
-
+            //codes to retreive data to delete from users
             $('body').delegate('.user_delete_id', 'click', function(){
                 var user_id = $(this).attr("user_id");
                 $.ajax({
