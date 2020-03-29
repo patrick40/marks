@@ -24,7 +24,7 @@
                             <li>
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="ti-slice"></i><span>Marks</span></a>
                                 <ul class="collapse">
-                                    <li><a href="<?php base(); ?>">Add Marks</a></li>
+                                    <li><a href="<?php base(); ?>marks">Add Marks</a></li>
                                     <li><a href="<?php base(); ?>">View Marks</a></li>
                                 </ul>
                             </li>

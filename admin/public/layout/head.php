@@ -9,9 +9,9 @@ $userDetails = user($_SESSION['user_id'], $_SESSION['usertype']);
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Admin board</title>
+    <title>Admin Board</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="image/png" href="../styles/assets/images/icon/favicon.ico">
+    <link rel="shortcut icon" type="image/png" href="images/layout/favicon.ico">
     <link rel="stylesheet" href="../styles/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../styles/assets/css/font-awesome.min.css">
     <link rel="stylesheet" href="../styles/assets/css/themify-icons.css">
