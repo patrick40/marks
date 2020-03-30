@@ -9,18 +9,18 @@ if(isset($_POST['add_marks'])){
         //Data
         if($_SESSION['usertype'] == 2 OR 3){
             $marks = $_POST['marks'];
-            $marks_out_of = $_POST['marks_out_of'];
-            $type_of_marks = $_POST['mark_type_id'];
-            $student = $_POST['student_id'];
-            $lecturer = $_POST['lecturer_id'];
-            $course = $_POST['course_id'];
+            $marks_out_of = $_POST['out_of'];
+            $type_of_marks = $_POST['type_of_marks'];
+            $student = $_POST['student'];
+            $lecturer = $_POST['lecturer'];
+            $course = $_POST['course'];
 
             $_SESSION['marks'] = $_marks;
-            $_SESSION['marks_out_of'] = $marks_out_of;
-            $_SESSION['mark_type_id'] = $type_of_marks;
-            $_SESSION['student_id'] = $student;
-            $_SESSION['lecturer_id'] = $lecturer;
-            $_SESSION['course_id'] = $course;
+            $_SESSION['out_of'] = $marks_out_of;
+            $_SESSION['type_of_marks'] = $type_of_marks;
+            $_SESSION['student'] = $student;
+            $_SESSION['lecturer'] = $lecturer;
+            $_SESSION['course'] = $course;
 
             if(empty($marks)){
                 $_SESSION['err'] = "Please enter marks";
@@ -29,16 +29,16 @@ if(isset($_POST['add_marks'])){
                 $_SESSION['err'] = "Please enter the marks out of";
             }
             elseif(empty($type_of_marks)){
-                $_SESSION['err'] = "is it CAT or Exam Marks?";
+                $_SESSION['err'] = "select type of marks";
             }
             elseif(empty($student)){
-                $_SESSION['err'] = "Please enter the stuednt you want to give marks";
+                $_SESSION['err'] = "Please select a student";
             }
             elseif(empty($lecturer)){
-                $_SESSION['err'] = "Please enter the course lecturer";
+                $_SESSION['err'] = "Please select lecturer";
             }
             elseif(empty($course)){
-                $_SESSION['err'] = "Please enter the course you are marking";
+                $_SESSION['err'] = "Please slect course";
             }
             else{
                 $add_marks = $conn->prepare("INSERT INTO marks (marks, marks_out_of, mark_type_id, student_id, lecturer_id, course_id) VALUES (:Marks, :out_of, :marks_type, :Student, :Lecturer, :Course)");
