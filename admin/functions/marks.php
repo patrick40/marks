@@ -15,7 +15,7 @@ if(isset($_POST['add_marks'])){
             $lecturer = $_POST['lecturer'];
             $course = $_POST['course'];
 
-            $_SESSION['marks'] = $_marks;
+            $_SESSION['marks'] = $marks;
             $_SESSION['out_of'] = $marks_out_of;
             $_SESSION['type_of_marks'] = $type_of_marks;
             $_SESSION['student'] = $student;

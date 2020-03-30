@@ -54,16 +54,6 @@
                                                 $student_id=$students_rows['student_id'];
                                                 $student_first_name = $students_rows['first_name'];
                                                 $student_last_name= $students_rows['last_name'];
-                                                $student_reg_number = $students_rows['reg_number'];
-                                                if($students_rows['gender'] == "m"){
-                                                    $student_gender = "Male";
-                                                }
-                                                else{
-                                                    $student_gender= "Female";
-                                                }
-                                                $student_level = $students_rows['student_level'];
-                                                $student_email = $students_rows['email'];
-                                                $student_phone = $students_rows['phone'];
                                                 echo "
                                                      <option>$student_first_name $student_last_name</option>
                                                 ";
@@ -80,19 +70,10 @@
                                         <?php
                                             $lecturers = $conn->prepare("SELECT * FROM lecturer WHERE status = '1' ORDER BY lecturer_id DESC");
                                             $lecturers->execute();
-                                            $i = 1;
                                             while($lecturer_rows = $lecturers->fetch(PDO::FETCH_ASSOC)){
                                                 $lecturer_id=$lecturer_rows['lecturer_id'];
                                                 $lecturer_first_name = $lecturer_rows['first_name'];
                                                 $lecturer_last_name= $lecturer_rows['last_name'];
-                                                if($lecturer_rows['gender'] == "m"){
-                                                    $lecturer_gender = "Male";
-                                                }
-                                                else{
-                                                    $lecturer_gender= "Female";
-                                                }
-                                                $lecturer_email = $lecturer_rows['email'];
-                                                $lecturer_phone = $lecturer_rows['phone'];
                                                 echo "
                                                      <option>$lecturer_first_name $lecturer_last_name</option>
                                                 ";
