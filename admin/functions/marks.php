@@ -7,7 +7,7 @@ require_once ("../functions/functions.php");
 if(isset($_POST['add_marks'])){
     if(isset($_SESSION['user_id']) && isset($_SESSION['usertype'])){
         //Data
-        if($_SESSION['usertype'] == 2 OR 3){
+        if($_SESSION['usertype'] == 2){
             $marks = $_POST['marks'];
             $marks_out_of = $_POST['out_of'];
             $type_of_marks = $_POST['type_of_marks'];
@@ -34,9 +34,7 @@ if(isset($_POST['add_marks'])){
             elseif(empty($student)){
                 $_SESSION['err'] = "Please select a student";
             }
-            elseif(empty($lecturer)){
-                $_SESSION['err'] = "Please select lecturer";
-            }
+
             elseif(empty($course)){
                 $_SESSION['err'] = "Please slect course";
             }
@@ -47,9 +45,9 @@ if(isset($_POST['add_marks'])){
                     ':out_of' => $marks_out_of,
                     ':marks_type' => $type_of_marks,
                     ':Student' => $student,
-                    ':Lecturer' => $lecturer,
+                    ':Lecturer' => $_SESSION['user_id'],
                     ':Course' => $course
-                    
+
                 ));
                 if($add_marks){
                     $_SESSION['msg'] = "Marks added successfully";
