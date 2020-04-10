@@ -38,7 +38,7 @@
                             <li>
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="ti-pie-chart"></i><span>Reports</span></span></a>
                                 <ul class="collapse">
-                                    <li><a href="<?php base(); ?>">Transcript</a></li>
+                                    <li><a href="<?php base(); ?>transcript">Transcript</a></li>
                                     <li><a href="<?php base(); ?>">General Reports</a></li>
                                 </ul>
                             </li>
