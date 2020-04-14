@@ -14,6 +14,8 @@ if(isset($_POST['add_marks'])){
             $student = $_POST['student'];
             $lecturer = $_POST['lecturer'];
             $course = $_POST['course'];
+            $semester = $_POST['term'];
+            $academic = $_POST['academic'];
 
             $_SESSION['marks'] = $marks;
             $_SESSION['out_of'] = $marks_out_of;
@@ -21,6 +23,8 @@ if(isset($_POST['add_marks'])){
             $_SESSION['student'] = $student;
             $_SESSION['lecturer'] = $lecturer;
             $_SESSION['course'] = $course;
+            $_SESSION['term'] = $_semester;
+            $_SESSION['academic'] =$_academic;
 
             if(empty($marks)){
                 $_SESSION['err'] = "Please enter marks";
@@ -37,17 +41,27 @@ if(isset($_POST['add_marks'])){
 
             elseif(empty($course)){
                 $_SESSION['err'] = "Please slect course";
+                
+            }
+            elseif(empty($semester)){
+                $_SESSION['err'] = "Please select semester";
+            }
+
+            elseif(empty($academic)){
+                $_SESSION['err'] = "Please Fill in academic year";
+                
             }
             else{
-                $add_marks = $conn->prepare("INSERT INTO marks (marks, marks_out_of, mark_type_id, student_id, lecturer_id, course_id) VALUES (:Marks, :out_of, :marks_type, :Student, :Lecturer, :Course)");
+                $add_marks = $conn->prepare("INSERT INTO marks (marks, marks_out_of, mark_type_id, student_id, lecturer_id, course_id, term_id, academic_year) VALUES (:Marks, :out_of, :marks_type, :Student, :Lecturer, :Course, :term, :academic)");
                 $add_marks->execute(array(
                     ':Marks' => $marks,
                     ':out_of' => $marks_out_of,
                     ':marks_type' => $type_of_marks,
                     ':Student' => $student,
                     ':Lecturer' => $_SESSION['user_id'],
-                    ':Course' => $course
-
+                    ':Course' => $course,
+                    ':term' => $_semester,
+                    ':academic' =>$_academic
                 ));
                 if($add_marks){
                     $_SESSION['msg'] = "Marks added successfully";

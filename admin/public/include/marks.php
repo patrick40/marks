@@ -41,6 +41,7 @@
                                 </select>
                             </div>
                         </div><br/>
+                        
                         <div class="row">
                             <div class="col-md-3">Student</div>
                             <div class="col-md-9">
@@ -82,6 +83,33 @@
                                 }
                                 ?>
                             </select>
+                            </div>
+                        </div><br/>
+                        <div class="row">
+                            <div class="col-md-3">Semester</div>
+                            <div class="col-md-9">
+                                <select name="term" class="form-control">                      
+                                    <option value="">Semester</option>
+                                        <?php
+                                    $semester = $conn->prepare("SELECT * FROM term WHERE status = 1 ORDER BY term_id ASC");
+                                    $semester->execute();
+                                    
+                                    while($semester_rows = $semester->fetch(PDO::FETCH_ASSOC)){
+                                        $semester_id = $semester_rows['semester_id'];
+                                        $semester_name = $semester_rows['term_name'];
+                                        echo "
+                                        <option value='$smester_id'>$semester_name</option>
+                                        ";
+                                        
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                        </div><br/>
+                        <div class="row">
+                            <div class="col-md-3">Academic Year</div>
+                            <div class="col-md-9">
+                                <input type="text" name="academic" class="form-control" />
                             </div>
                         </div><br/>
                         <?php
