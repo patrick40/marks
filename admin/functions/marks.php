@@ -16,6 +16,7 @@ if(isset($_POST['add_marks'])){
             $course = $_POST['course'];
             $semester = $_POST['term'];
             $academic = $_POST['academic'];
+        
 
             $_SESSION['marks'] = $marks;
             $_SESSION['out_of'] = $marks_out_of;
@@ -23,8 +24,8 @@ if(isset($_POST['add_marks'])){
             $_SESSION['student'] = $student;
             $_SESSION['lecturer'] = $lecturer;
             $_SESSION['course'] = $course;
-            $_SESSION['term'] = $_semester;
-            $_SESSION['academic'] =$_academic;
+            $_SESSION['term'] = $semester;
+            $_SESSION['academic'] = $academic;
 
             if(empty($marks)){
                 $_SESSION['err'] = "Please enter marks";
@@ -60,8 +61,8 @@ if(isset($_POST['add_marks'])){
                     ':Student' => $student,
                     ':Lecturer' => $_SESSION['user_id'],
                     ':Course' => $course,
-                    ':term' => $_semester,
-                    ':academic' =>$_academic
+                    ':term' => $semester,
+                    ':academic' =>$academic
                 ));
                 if($add_marks){
                     $_SESSION['msg'] = "Marks added successfully";

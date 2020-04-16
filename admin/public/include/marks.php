@@ -95,10 +95,10 @@
                                     $semester->execute();
                                     
                                     while($semester_rows = $semester->fetch(PDO::FETCH_ASSOC)){
-                                        $semester_id = $semester_rows['semester_id'];
+                                        $semester_id = $semester_rows['term_id'];
                                         $semester_name = $semester_rows['term_name'];
                                         echo "
-                                        <option value='$smester_id'>$semester_name</option>
+                                        <option value='$semester_id'>$semester_name</option>
                                         ";
                                         
                                     }

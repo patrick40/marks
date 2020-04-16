@@ -7,7 +7,7 @@ require_once ("../functions/functions.php");
 if(isset($_POST['add_course'])){
     if(isset($_SESSION['user_id']) && isset($_SESSION['usertype'])){
         //Data
-        if($_SESSION['usertype'] == 3){
+        if($_SESSION['usertype'] == 3 OR 2){
             $course_code = $_POST['course_code'];
             $course_name = $_POST['course_name'];
 

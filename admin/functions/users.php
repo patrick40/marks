@@ -43,7 +43,7 @@ if(isset($_POST['delete_user_id'])){
         }
     }
 }
-elseif($_SESSION['usertype'] == 3){
+elseif($_SESSION['usertype'] == 3 OR 2){
     if(isset($_SESSION['user_id']) && isset($_SESSION['usertype'])){
         //Data
         if(isset($_POST['add_student'])){ //button clicked
@@ -57,6 +57,7 @@ elseif($_SESSION['usertype'] == 3){
             $student_last_name= $_POST['last_name'];
             $student_reg_number = $_POST['reg_number'];
             $student_gender= $_POST['gender'];
+            $date_of_birth= $_POST['date_of_birth'];
             $student_level = $_POST['student_level'];
             $student_email = $_POST['email'];
             $student_phone = $_POST['phone'];
@@ -81,6 +82,9 @@ elseif($_SESSION['usertype'] == 3){
             elseif(empty($student_gender)){
                 $_SESSION['err'] = "Please select gender";
             }
+            elseif(empty($date_of_birth)){
+                $_SESSION['err'] = "Date of Birth is missing";
+            }
             elseif(empty($student_level)){
                 $_SESSION['err'] = "Please select level";
             }
@@ -99,12 +103,13 @@ elseif($_SESSION['usertype'] == 3){
                     ':stud_phone' => $student_phone
                 ));
                 if($check_student->rowCount() == 0) {
-                    $add_student = $conn->prepare("INSERT INTO student (first_name,last_name,reg_number,gender,student_level,email,phone) VALUES (:first_name, :last_name, :reg_number, :gender, :student_level, :email, :phone)");
+                    $add_student = $conn->prepare("INSERT INTO student (first_name,last_name,reg_number,gender,date_of_birth,student_level,email,phone) VALUES (:first_name, :last_name, :reg_number, :gender, :date_of_birth, :student_level, :email, :phone)");
                     $add_student->execute(array(
                         ':first_name' => $student_first_name,
                         ':last_name' => $student_last_name,
                         ':reg_number' => $student_reg_number,
                         ':gender' => $student_gender,
+                        ':date_of_birth' => $date_of_birth,
                         ':student_level' => $student_level,
                         ':email' => $student_email,
                         ':phone' => $student_phone

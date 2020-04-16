@@ -45,6 +45,12 @@
                             </div>
                         </div><br/>
                         <div class="row">
+                        <div class="col-md-3">Date Of Birth</div>
+                        <div class="col-md-9">
+                            <input type="date" name="date_of_birth" class="form-control">
+                        </div>
+                        </div><br/>
+                        <div class="row">
                             <div class="col-md-3">Level</div>
                             <div class="col-md-9">
                                 <input type="text" name="student_level" value="<?php echo $userDetails[0]->student_level; ?>" class="form-control"/>

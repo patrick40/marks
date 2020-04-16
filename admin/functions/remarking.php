@@ -8,26 +8,30 @@ if(isset($_POST['save_marks'])){
     if(isset($_SESSION['user_id']) && isset($_SESSION['usertype'])){
         //Data
         if($_SESSION['usertype'] == 3){
-            $re_marks = $_POST['student'];
-            $re_marks_id = $_POST['exam'];
-            $hod_id = $_POST['hod_id'];
-            $re_marks_type_id = $_POST['reason'];
+            $student = $_POST['student'];
+            $cat = $_POST['cat'];
+            $exam =$_POST['exam'];
+            $reason = $_POST['reason'];
+
+            $_SESSION['student']= $student;
+            $_SESSION['cat'] = $cat;
+            $_SESSION['exam'] = $exam;
+            $_SESSION['reason'] = $reason;
            
 
-            if(empty($re_marks)){
+            if(empty($student)){
                 $_SESSION['err'] = "Please select student";
-            }
-            elseif(empty($re_marks_id)){
+            }elseif(empty($exam)){
                 $_SESSION['err'] = "Please enter marks ";
             }
-           
+
             else{
                 $save_marks = $conn->prepare("INSERT INTO re_mark (marks, marks_id, hod_id, re_mark_type_id) VALUES (:Marks, :marks_id, :hod_id, :re_mark_type_id)");
                 $save_marks->execute(array(
-                    ':Marks' => $re_marks,
-                    ':marks_id' => $re_marks_id,
+                    ':Marks' => $exam,
+                    ':marks_id' => $student,
                     ':hod_id' => $_SESSION['user_id'],
-                    ':re_mark_type_id' => $re_marks_type_id
+                    ':re_mark_type_id' => $reason
                 ));
                 if($save_marks){
                     $_SESSION['msg'] = "Marks saved successfully";
