@@ -2,7 +2,7 @@
 <div class="container">
     <br/>
     <div class="card">
-        <div class="card-header"><i class="ti-slice"></i> Update Marks</div>
+        <div class="card-header"><i class="ti-slice"></i> Remarking</div>
         <div class="card-body">
             <form action="functions/remarking.php" method="post">
                 <div class="row">
@@ -14,31 +14,32 @@
                             <select name="student" class="form-control"> 
                                     <option value="">select student</option>
                                         <?php
-                                            $students = $conn->prepare("SELECT * FROM student WHERE status = '1' ORDER BY first_name ASC");
+                                            $students = $conn->prepare("SELECT * FROM student,marks WHERE marks.student_id=student.student_id ORDER BY first_name ASC");
                                             $students->execute();
-                                            
+
                                             while($students_rows = $students->fetch(PDO::FETCH_ASSOC)){
-                                                $student_id=$students_rows['student_id'];
+                                                $marks_id=$students_rows['marks_id'];
                                                 $student_first_name = $students_rows['first_name'];
                                                 $student_last_name= $students_rows['last_name'];
                                                 echo "
-                                                     <option value='$student_id'>$student_first_name $student_last_name</option>
+                                                     <option value='$marks_id'>$student_first_name $student_last_name</option>
                                                 ";
                                                 }
+                                                
                                                 ?>                    
                                 </select>
                             </div>
                         </div><br/>
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col-md-3">CAT</div>
                             <div class="col-md-9">
                                 <input type="text" name="cat" value="" class="form-control" />
                             </div>
-                        </div><br/>
+                        </div><br/> -->
                         <div class="row">
-                            <div class="col-md-3">EXAM</div>
+                            <div class="col-md-3">Marks</div>
                             <div class="col-md-9">
-                                <input type="text" name="exam" value="" class="form-control" />
+                                <input type="text" name="marks" value="" class="form-control" />
                             </div>
                         </div><br/>
                         <div class="row">
