@@ -113,6 +113,35 @@ if(!isset($_SESSION['user_id'])){
                     }
                 })
             })
+
+            $('body').delegate('.type_of_marks', 'change', function(){
+                var type_marks = document.querySelector(".type_of_marks").value;
+                $.ajax({
+                    url: "functions/courses.php",
+                    method: "POST",
+                    data: {type_marks_selected:type_marks},
+                    success: function(data){
+                        $('.out_of').val(data);
+                    }
+                })
+            })
+
+            // check if marks has been already recorded
+            $(".check-marks, .student_selected, .out_of").on("keyup click mouseover", function(e){
+                $('.marks_status').html("<div style='float: right; color: red'>Status loading...</div>");
+            e.preventDefault(); // avoid to execute the actual submit of the form.
+            var form = $('.submit-marks');
+            $.ajax({
+                type: "POST",
+                url: "functions/check_if_marks_exist.php",
+                data: form.serialize(), // serializes the form's elements.
+                success: function(data)
+                {
+                    // alert(data); // show response from the php script.
+                    $('.marks_status').html(data);
+                }
+                });
+            });
         });
     </script>
 </body>

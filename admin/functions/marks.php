@@ -12,12 +12,11 @@ if(isset($_POST['add_marks'])){
             $marks_out_of = $_POST['out_of'];
             $type_of_marks = $_POST['type_of_marks'];
             $student = $_POST['student'];
-            $lecturer = $_POST['lecturer'];
+            $lecturer = $_SESSION['lecturer'];
             $course = $_POST['course'];
             $semester = $_POST['term'];
             $academic = $_POST['academic'];
         
-
             $_SESSION['marks'] = $marks;
             $_SESSION['out_of'] = $marks_out_of;
             $_SESSION['type_of_marks'] = $type_of_marks;
@@ -52,7 +51,11 @@ if(isset($_POST['add_marks'])){
                 $_SESSION['err'] = "Please Fill in academic year";
                 
             }
+            elseif($marks > $marks_out_of){
+                $_SESSION['err'] = "Please marks should not be greater than out of marks!";
+            }
             else{
+                //check marks
                 $add_marks = $conn->prepare("INSERT INTO marks (marks, marks_out_of, mark_type_id, student_id, lecturer_id, course_id, term_id, academic_year) VALUES (:Marks, :out_of, :marks_type, :Student, :Lecturer, :Course, :term, :academic)");
                 $add_marks->execute(array(
                     ':Marks' => $marks,

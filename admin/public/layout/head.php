@@ -34,4 +34,9 @@ $userDetails = user($_SESSION['user_id'], $_SESSION['usertype']);
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.jqueryui.min.css">
+    <style>
+        select.form-control:not([size]):not([multiple]) {
+            height: calc(2.25rem + 8px);
+        }
+    </style>
 </head>

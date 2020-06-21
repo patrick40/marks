@@ -115,4 +115,15 @@ if(isset($_POST['update_course'])){
     }
     header("Location: ../courses");
 }
+
+if(isset($_POST['type_marks_selected'])){
+    $selected_type = $_POST['type_marks_selected'];
+    $marks_type_out_of = $conn->prepare("SELECT * FROM mark_type WHERE mark_type_id = :mark_type_id");
+    $marks_type_out_of->execute(array(
+        ':mark_type_id' => $selected_type
+    ));
+    if($marks_type_out_of_row = $marks_type_out_of->fetch(PDO::FETCH_OBJ)){
+        echo $marks_type_out_of_row->marks_out_of;
+    }
+}
 ?>
